@@ -24,6 +24,11 @@ class MainActivityTest {
     @Test
     fun testButtonClickNavigatesToEmailLoginActivity() {
         onView(withId(R.id.btnEmailAuth)).perform(click())
+
+        // Added a delay to ensure the view hierarchy has fully loaded
+        Thread.sleep(1000)
+
+        onView(withId(R.id.emailLoginActivity)).check(matches(isDisplayed()))
     }
 
     @Test
