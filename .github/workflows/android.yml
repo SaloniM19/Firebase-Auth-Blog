@@ -52,6 +52,14 @@ jobs:
         name: unit-test-result
         path: app/build/reports/tests/testDebugUnitTest/
 
+    - name: Wait for emulator to start up
+      run: |
+        echo "Waiting for emulator to start up"
+        while true; do
+          adb shell getprop sys.boot_completed | grep 1 && break
+          sleep 1
+        done
+
     - name: Instrumentation tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
