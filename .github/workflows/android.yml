@@ -52,14 +52,14 @@ jobs:
         name: unit-test-result
         path: app/build/reports/tests/testDebugUnitTest/
 
-    - name: Execute instrumentation tests
+    - name: Instrumentation tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
         api-level: 29
-        script: ./gradlew connectedCheck
+        script: ./gradlew connectedCheck --stacktrace
 
-    - name: Save Instrumented Test Report
+    - name: Upload Reports
       uses: actions/upload-artifact@v1
       with:
-        name: instrumented-test-result
-        path: app/build/reports/androidTests/connected/
+        name: reports
+        path: app/build/reports
